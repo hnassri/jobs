@@ -17,9 +17,12 @@ class Teacher
   end
 
   def save
-    # File.open("./data.json","w+") do |f|
-    #   puts f.parse
-    # end
+    json = File.read("./data.json")
+    hash = JSON.parse(json)
+    hash["teachers"] << @teacher
+    File.open("./data.json","w") do |f|
+      f.write(JSON.pretty_generate(hash))
+    end
   end
 
 end
